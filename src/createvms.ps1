@@ -1,14 +1,5 @@
-# Get the login credentials for the two VMs
-$cred = Get-Credential
-
-# Make sure we are connected to Azure
-Connect-AzAccount
-
-# Create the virtual network
-$virtualnetwork = New-AzVirtualNetwork -ResourceGroupName "ID609OE1-gevis1" -Location "australiaeast" -Name "steffen-vnet" -AddressPrefix 10.1.0.0/16
-
-# Create the subnet
-Add-AzVirtualNetworkSubnetConfig -VirtualNetwork $virtualnetwork -Name "steffen-subnet" -AddressPrefix 10.1.0.0/24
+# Get the login credentials for the VMs. Ideally this would be three separate credentials, but it is one here for convenience.
+$cred = Get-Credential -Message "Input credentials for VMS"
 
 # VM1 config
 $vm1config = @{
@@ -45,3 +36,4 @@ $vm2 = New-AzVM @vm2config
 # Connect to the VMs with RDP
 Get-AzRemoteDesktopFile -ResourceGroupName $vm1.ResourceGroupName -Name $vm1.Name -Launch
 Get-AzRemoteDesktopFile -ResourceGroupName $vm2.ResourceGroupName -Name $vm2.Name -Launch
+
