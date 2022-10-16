@@ -27,7 +27,7 @@ Write-Host "Creating Network"
 Write-Host "Creating Application Security Groups"
 & .\createasg.ps1
 Write-Host "Creating Virtual Machines"
-#.\createvms.ps1
+& .\createvms.ps1
 Write-Host "Creating Routes"
 Write-Host "Configuring Active Directory"
 if ($resetPolicy) {
